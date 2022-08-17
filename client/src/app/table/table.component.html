@@ -1,0 +1,82 @@
+<div class="main">
+  <h3>People list</h3>
+  <div *ngIf="error">
+    <p>Error: {{ error }}</p>
+  </div>
+
+
+  <!-- <div class="todo-container" *ngIf="todos">
+    <ul>
+      <li *ngFor="let todo of todos">
+        <div class="todo">
+        <span class="todo-name">{{ todo.name }}</span>
+        <span class="todo-description">{{ todo.description }}</span>
+      </div>
+        <button class="delete-btn" (click)="deleteTodo(todo.id)"> DELETE TODO</button>
+      </li>
+    </ul>
+  </div> -->
+  </div>
+
+  <div class="container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="height">
+        <th mat-header-cell *matHeaderCellDef> Height </th>
+        <td mat-cell *matCellDef="let element"> {{element.height}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="mass">
+        <th mat-header-cell *matHeaderCellDef> Mass </th>
+        <td mat-cell *matCellDef="let element"> {{element.mass}} </td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="gender">
+        <th mat-header-cell *matHeaderCellDef> Gender </th>
+        <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+      </ng-container>
+
+      <!-- Gender Column -->
+      <ng-container matColumnDef="homeWorld">
+        <th mat-header-cell *matHeaderCellDef> Home World </th>
+        <td mat-cell *matCellDef="let element"> {{element.homeWorld}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="star" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td class="text-column" mat-cell *matCellDef="let element">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="preview(element)">
+              <mat-icon>remove_red_eye</mat-icon>
+              <span class="icon-text ">View</span>
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+
